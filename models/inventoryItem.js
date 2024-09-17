@@ -1,43 +1,43 @@
 import pkg from "sequelize";
 const { DataTypes } = pkg;
 import sequelize from "../config/db.js";
-import Crisis from "./crisis.js";
+import User from "./user.js";
 
-const Donation = sequelize.define(
-  "Donation",
+const InventoryItem = sequelize.define(
+  "InventoryItem",
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    donorName: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    amount: {
-      type: DataTypes.FLOAT,
+    type: {
+      type: DataTypes.ENUM("relief", "expense"),
       allowNull: false,
     },
-    email: {
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    unit: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    phone: {
-      type: DataTypes.STRING,
+    addedBy: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: User,
+        key: "id",
+      },
     },
     date: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
-    },
-    crisisId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Crisis,
-        key: "id",
-      },
-      allowNull: true, // This field can be null if the donation is not linked to any specific crisis
     },
   },
   {
@@ -45,4 +45,4 @@ const Donation = sequelize.define(
   }
 );
 
-export default Donation;
+export default InventoryItem;

@@ -1,7 +1,10 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../config/db';
+import pkg from "sequelize";
+const { DataTypes } = pkg;
+import sequelize from "../config/db.js";
+import Crisis from "./crisis.js";
+import Volunteer from "./volunteer.js";
 
-const VolunteerAssignment = sequelize.define('VolunteerAssignment', {
+const VolunteerAssignment = sequelize.define("VolunteerAssignment", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -11,16 +14,16 @@ const VolunteerAssignment = sequelize.define('VolunteerAssignment', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'Users',
-      key: 'id',
+      model: Volunteer,
+      key: "id",
     },
   },
   crisisId: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'Crisis',
-      key: 'id',
+      model: Crisis,
+      key: "id",
     },
   },
   task: {
