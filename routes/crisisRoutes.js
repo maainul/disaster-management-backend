@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post("/create", createCrisis); 
 router.put("/:id", updateCrisis); 
-router.get("/list", getAllCrises);
+router.get("/", getAllCrises);
 router.get("/:id", getCrisisById);
 
 export default router;

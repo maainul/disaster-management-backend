@@ -22,6 +22,13 @@ app.use(cors());
 // Parse incoming JSON requests
 app.use(express.json());
 
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://localhost:5173"],
+    credentials: true,
+  })
+);
+
 // Register Routes
 
 // User-routes
@@ -32,8 +39,9 @@ app.use("/api/crises", crisisRoutes);
 app.use("/api/donation", donationRoutes);
 // volunteers-routes
 app.use("/api/volunteers", volunteerRoutes);
-//
+// assignments-routes
 app.use("/api/assignments", volunteerAssignmentRoutes);
+// inventory-routes
 app.use("/api/inventory", inventoryRoutes);
 
 // Sync Database Models

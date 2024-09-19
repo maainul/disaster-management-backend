@@ -4,7 +4,6 @@ import Joi from "joi";
 export const validateVolunteer = (data) => {
   const schema = Joi.object({
     name: Joi.string().min(3).max(100).required().label("Name"),
-    expatriate: Joi.boolean(),
     phoneNumber: Joi.string().required().label("Phone Number"),
     emergencyPhoneNumber: Joi.string()
       .required()
@@ -27,6 +26,17 @@ export const validateVolunteer = (data) => {
     districtUpazilaPermanent: Joi.string()
       .allow("", null)
       .label("District / Upazila Permanent"),
+    status: Joi.string()
+      .valid(
+        "pending",
+        "approved",
+        "in_progress",
+        "resolved",
+        "assign",
+        "release"
+      )
+      .default("pending")
+      .label("Status"),
     currentAddress: Joi.string().allow("", null).label("Current Address"),
     districtUpazilaCurrent: Joi.string()
       .allow("", null)

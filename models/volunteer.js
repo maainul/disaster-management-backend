@@ -14,10 +14,6 @@ const Volunteer = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    expatriate: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
     phoneNumber: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -47,10 +43,6 @@ const Volunteer = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    occupationSelected: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     voluntaryWorkInterest: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -75,9 +67,13 @@ const Volunteer = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    status: {
+      type: DataTypes.ENUM("pending", "approved", "in_progress", "resolved","assign","release"),
+      defaultValue: "pending",
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 

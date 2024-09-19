@@ -10,7 +10,9 @@ export const createDonation = async (req, res) => {
     if (error) {
       return res.status(400).json(formatValidationErrors(error));
     }
-    const { donorName, email, phone, amount, crisisId } = req.body;
+
+    const { donorName, email, phone, amount, crisisId, paymentMethod } =
+      req.body;
 
     // check if crisis exists
     if (crisisId) {
@@ -29,6 +31,7 @@ export const createDonation = async (req, res) => {
       phone,
       amount,
       crisisId,
+      paymentMethod,
     });
     return res.status(200).json({
       success: true,
@@ -43,6 +46,24 @@ export const createDonation = async (req, res) => {
     });
   }
 };
+
+// Get All Volunteers
+export const getAllDonations = async (req, res) => {
+  try {
+    const donations = await Donation.findAll();
+    return res.status(200).json({
+      success: true,
+      data: donations,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Failed to retrieve donations",
+      error: error.message,
+    });
+  }
+};
+
 
 // Get Total Donations
 export const getTotalDonations = async (req, res) => {

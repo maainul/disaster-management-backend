@@ -39,6 +39,10 @@ const Donation = sequelize.define(
       },
       allowNull: true, // This field can be null if the donation is not linked to any specific crisis
     },
+    paymentMethod: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     timestamps: true,

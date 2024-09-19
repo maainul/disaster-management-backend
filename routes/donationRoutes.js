@@ -1,10 +1,18 @@
 import express from 'express';
-import { createDonation, getTotalDonations, getDonationStats } from '../controllers/donationController.js';
+import {
+  createDonation,
+  getTotalDonations,
+  getDonationStats,
+  getAllDonations,
+} from "../controllers/donationController.js";
 
 const router = express.Router();
 
 // Route for creating a donation
-router.post('/donate', createDonation);
+router.post('/', createDonation);
+
+// Route for get all donation
+router.get("/", getAllDonations);
 
 // Route for fetching total donations
 router.get('/total', getTotalDonations);
